@@ -23,7 +23,21 @@
     groupeView.backgroundColor=[UIColor redColor];
     [self.view addSubview:groupeView];
     
+    
+    
+    self.navigationController.navigationBar.backgroundColor=[UIColor whiteColor];
+    self.navigationController.navigationBar.translucent=NO;
+    UIBarButtonItem*first=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"category_menu"] style:UIBarButtonItemStylePlain  target:self action:@selector(pushLogin)];
+    UIBarButtonItem*second=[[UIBarButtonItem alloc]initWithTitle:@"数字尾巴" style:UIBarButtonItemStylePlain  target:self action:@selector(pushLogin) ];
+    self.navigationItem.leftBarButtonItems=@[first,second];
+    UIBarButtonItem*rFirst=[[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(pushLogin)];
+    UIBarButtonItem*rSecond=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"inbox"] style:UIBarButtonItemStylePlain target:self action:@selector(pushLogin)];
+    self.navigationItem.rightBarButtonItems=@[rFirst,rSecond];
+    
     // Do any additional setup after loading the view from its nib.
+}
+-(void)pushLogin{
+    NSLog(@"我找到你了");
 }
 
 - (void)didReceiveMemoryWarning {

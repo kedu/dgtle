@@ -14,4 +14,5 @@
 @interface navViewController : UINavigationController
 //@property(nonatomic,strong)UITableView*tabView;
 //@property(nonatomic,strong )ViewController*vc;
+@property(nonatomic,assign)int red;
 @end

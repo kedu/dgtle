@@ -18,7 +18,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+     self.red=1;
+   
     //导航菜单
     UIView*menuView=[[UIView alloc]initWithFrame:CGRectMake(0, 54, self.view.frame.size.width, 60)];
 
@@ -56,16 +57,39 @@
 }
 -(void)Home{
 
-
+    [self popToRootViewControllerAnimated:YES];
 
 }
 
 -(void)groupeView{
-    GroupeViewController*groupe=[GroupeViewController new];
-    [self pushViewController:groupe animated:YES];
-  
     
+    GroupeViewController*groupe=[GroupeViewController new];
+    
+
+   
+        [self pushViewController:groupe animated:YES];
+    
+
 }
+-(void)dealloc{
+
+
+}
+
+//-(void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
+//    
+//    
+//    if (self.red==1) {
+//        
+//        [super pushViewController:viewController animated:animated];
+//    }
+//    
+//    
+//
+//
+//
+//
+//}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
