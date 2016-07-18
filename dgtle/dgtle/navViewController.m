@@ -43,14 +43,7 @@
       [findButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     
     [menuView addSubview:findButton];
-    //顶View
-//    UIButton*bt1=[UIButton buttonWithType:UIButtonTypeCustom];
-//    bt1.frame=CGRectMake(0, 10, 35, 45);
-//    [bt1 setImage:[UIImage imageNamed:@"category_menu"] forState:UIControlStateNormal];
-//    [menuView addSubview:bt1];
-    
-    
-    
+
     
     menuView.backgroundColor=[UIColor redColor];
     [self.view addSubview:menuView];

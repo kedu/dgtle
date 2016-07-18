@@ -53,8 +53,8 @@ typedef NS_ENUM(NSInteger, CatidType){
     //登录 tableView
     //搭建框架
     //设置导航栏
-//    [self setNav];
-    self.navigationController.navigationBarHidden=YES;
+    [self setNav];
+//    self.navigationController.navigationBarHidden=YES;
     [self setMenu];
     //设置tableview
     [self setTableview];
@@ -86,21 +86,21 @@ typedef NS_ENUM(NSInteger, CatidType){
 self.tableView.frame = CGRectMake(0, 114.f, self.view.bounds.size.width, self.view.bounds.size.height);
 //    self.automaticallyAdjustsScrollViewInsets=NO;
     //解决导航栏线
-//    if ([self.navigationController.navigationBar respondsToSelector:@selector( setBackgroundImage:forBarMetrics:)]){
-//        NSArray *list=self.navigationController.navigationBar.subviews;
-//        for (id obj in list) {
-//            if ([obj isKindOfClass:[UIImageView class]]) {
-//                UIImageView *imageView=(UIImageView *)obj;
-//                NSArray *list2=imageView.subviews;
-//                for (id obj2 in list2) {
-//                    if ([obj2 isKindOfClass:[UIImageView class]]) {
-//                        UIImageView *imageView2=(UIImageView *)obj2;
-//                        imageView2.hidden=YES;
-//                    }
-//                }
-//            }
-//        }
-//    }
+    if ([self.navigationController.navigationBar respondsToSelector:@selector( setBackgroundImage:forBarMetrics:)]){
+        NSArray *list=self.navigationController.navigationBar.subviews;
+        for (id obj in list) {
+            if ([obj isKindOfClass:[UIImageView class]]) {
+                UIImageView *imageView=(UIImageView *)obj;
+                NSArray *list2=imageView.subviews;
+                for (id obj2 in list2) {
+                    if ([obj2 isKindOfClass:[UIImageView class]]) {
+                        UIImageView *imageView2=(UIImageView *)obj2;
+                        imageView2.hidden=YES;
+                    }
+                }
+            }
+        }
+    }
 }
 -(void)ConnectNetWoke{
     //开启线程
