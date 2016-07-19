@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		18C867B21D3C74A2005C32F6 /* GroupeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C867B01D3C74A2005C32F6 /* GroupeViewController.m */; };
 		18C867B31D3C74A2005C32F6 /* GroupeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C867B11D3C74A2005C32F6 /* GroupeViewController.xib */; };
+		18C867B71D3DA191005C32F6 /* findNewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C867B51D3DA191005C32F6 /* findNewViewController.m */; };
+		18C867B81D3DA191005C32F6 /* findNewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C867B61D3DA191005C32F6 /* findNewViewController.xib */; };
+		18C867BC1D3DCEA8005C32F6 /* SliderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C867BA1D3DCEA8005C32F6 /* SliderViewController.m */; };
+		18C867BD1D3DCEA8005C32F6 /* SliderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C867BB1D3DCEA8005C32F6 /* SliderViewController.xib */; };
+		18C867BF1D3E1DF9005C32F6 /* sliderView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18C867BE1D3E1DF9005C32F6 /* sliderView.storyboard */; };
 		18FADF141D35F7FD0041A738 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FADF131D35F7FD0041A738 /* main.m */; };
 		18FADF171D35F7FD0041A738 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FADF161D35F7FD0041A738 /* AppDelegate.m */; };
 		18FADF1A1D35F7FD0041A738 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FADF191D35F7FD0041A738 /* ViewController.m */; };
@@ -90,6 +95,13 @@
 		18C867AF1D3C74A2005C32F6 /* GroupeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupeViewController.h; sourceTree = "<group>"; };
 		18C867B01D3C74A2005C32F6 /* GroupeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupeViewController.m; sourceTree = "<group>"; };
 		18C867B11D3C74A2005C32F6 /* GroupeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupeViewController.xib; sourceTree = "<group>"; };
+		18C867B41D3DA191005C32F6 /* findNewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = findNewViewController.h; sourceTree = "<group>"; };
+		18C867B51D3DA191005C32F6 /* findNewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = findNewViewController.m; sourceTree = "<group>"; };
+		18C867B61D3DA191005C32F6 /* findNewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = findNewViewController.xib; sourceTree = "<group>"; };
+		18C867B91D3DCEA8005C32F6 /* SliderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SliderViewController.h; sourceTree = "<group>"; };
+		18C867BA1D3DCEA8005C32F6 /* SliderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SliderViewController.m; sourceTree = "<group>"; };
+		18C867BB1D3DCEA8005C32F6 /* SliderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SliderViewController.xib; sourceTree = "<group>"; };
+		18C867BE1D3E1DF9005C32F6 /* sliderView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = sliderView.storyboard; sourceTree = "<group>"; };
 		18FADF0F1D35F7FD0041A738 /* dgtle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dgtle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18FADF131D35F7FD0041A738 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		18FADF151D35F7FD0041A738 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -315,6 +327,13 @@
 			children = (
 				18FADF181D35F7FD0041A738 /* ViewController.h */,
 				18FADF191D35F7FD0041A738 /* ViewController.m */,
+				18C867B91D3DCEA8005C32F6 /* SliderViewController.h */,
+				18C867BA1D3DCEA8005C32F6 /* SliderViewController.m */,
+				18C867BB1D3DCEA8005C32F6 /* SliderViewController.xib */,
+				18C867BE1D3E1DF9005C32F6 /* sliderView.storyboard */,
+				18C867B41D3DA191005C32F6 /* findNewViewController.h */,
+				18C867B51D3DA191005C32F6 /* findNewViewController.m */,
+				18C867B61D3DA191005C32F6 /* findNewViewController.xib */,
 				18C867AF1D3C74A2005C32F6 /* GroupeViewController.h */,
 				18C867B01D3C74A2005C32F6 /* GroupeViewController.m */,
 				18C867B11D3C74A2005C32F6 /* GroupeViewController.xib */,
@@ -606,11 +625,14 @@
 				18FADFEF1D37979A0041A738 /* SVProgressHUD.bundle in Resources */,
 				18FAEADC1D3BC1330041A738 /* navViewController.xib in Resources */,
 				18FADF251D35F7FD0041A738 /* LaunchScreen.storyboard in Resources */,
+				18C867B81D3DA191005C32F6 /* findNewViewController.xib in Resources */,
 				18FAEAD21D3A54970041A738 /* NewHeaderViewController.xib in Resources */,
 				18C867B31D3C74A2005C32F6 /* GroupeViewController.xib in Resources */,
 				18FADF221D35F7FD0041A738 /* Assets.xcassets in Resources */,
 				18FADF1D1D35F7FD0041A738 /* Main.storyboard in Resources */,
 				18FAEAD71D3B0CE50041A738 /* BackViewController.xib in Resources */,
+				18C867BF1D3E1DF9005C32F6 /* sliderView.storyboard in Resources */,
+				18C867BD1D3DCEA8005C32F6 /* SliderViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -669,6 +691,7 @@
 				18FAE1E01D38EB7D0041A738 /* AFHTTPRequestOperationManager.m in Sources */,
 				18FADFED1D37979A0041A738 /* SVIndefiniteAnimatedView.m in Sources */,
 				18FADFF01D37979A0041A738 /* SVProgressHUD.m in Sources */,
+				18C867BC1D3DCEA8005C32F6 /* SliderViewController.m in Sources */,
 				18FAE1E11D38EB7D0041A738 /* AFHTTPSessionManager.m in Sources */,
 				18FADFDB1D37979A0041A738 /* NetWorkEngine.m in Sources */,
 				18FAE1EE1D38EB7D0041A738 /* UIRefreshControl+AFNetworking.m in Sources */,
@@ -681,6 +704,7 @@
 				18FADFE11D37979A0041A738 /* SDWebImageDecoder.m in Sources */,
 				18FADFE01D37979A0041A738 /* SDWebImageCompat.m in Sources */,
 				18FAE1E81D38EB7D0041A738 /* AFNetworkActivityIndicatorManager.m in Sources */,
+				18C867B71D3DA191005C32F6 /* findNewViewController.m in Sources */,
 				18FADFEA1D37979A0041A738 /* UIImageView+HighlightedWebCache.m in Sources */,
 				18FAE1E21D38EB7D0041A738 /* AFNetworkReachabilityManager.m in Sources */,
 				18FADFDE1D37979A0041A738 /* NSData+ImageContentType.m in Sources */,

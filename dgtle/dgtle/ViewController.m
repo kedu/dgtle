@@ -12,6 +12,7 @@
 #import "NetWorkEngine.h"
 #import "NewHeaderViewController.h"
 #import "BackViewController.h"
+#import "SliderViewController.h"
 //#import "HeaderViewController.h"
 #define HomeData(i)  [NSString stringWithFormat:@"http://www.dgtle.com/api/dgtle_api/v1/api.php?charset=UTF8&dataform=json&swh=480x800&apikeys=DGTLECOM_APITEST1&modules=portal&actions=article&limit=%02d_20&order=dateline_desc",i]
 typedef NS_ENUM(NSInteger, CatidType){
@@ -19,12 +20,13 @@ typedef NS_ENUM(NSInteger, CatidType){
         Phone=13,//手机
     //数据太多,后面来集成
 };
-@interface ViewController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate>
+@interface ViewController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate,SliderViewControllerDelegate>
 @property(nonatomic,strong)NewHeaderViewController*header;
 @property(nonatomic,strong)UIPageControl*pageControl;
 @property(nonatomic,strong)NSMutableArray *array;//存放model
 @property(nonatomic,assign)CGFloat f1;
 
+@property(nonatomic,strong)UIView*vv;
 @property(nonatomic,assign)CGFloat f3;//网络通断参数
 @property(nonatomic,assign)CGRect fra;
 @end
@@ -43,6 +45,8 @@ typedef NS_ENUM(NSInteger, CatidType){
     //判断网络
     //加载数据
     self.f1=1;
+    self.c=1;
+  
     
 
      self.array=[NSMutableArray array];
@@ -72,10 +76,10 @@ typedef NS_ENUM(NSInteger, CatidType){
 
 }
 -(void)setMenu{
+    CATransition *applicationLoadViewIn =[CATransition animation];
+    self.Ca=applicationLoadViewIn;
     
-//    self.view.backgroundColor=[UIColor clearColor];
-//    self.view.frame=CGRectMake(<#CGFloat x#>, <#CGFloat y#>, <#CGFloat width#>, <#CGFloat height#>)
-
+    self.Ca.removedOnCompletion=NO;
 
 
 
@@ -340,15 +344,67 @@ self.tableView.frame = CGRectMake(0, 114.f, self.view.bounds.size.width, self.vi
     
        self.navigationController.navigationBar.backgroundColor=[UIColor whiteColor];
     self.navigationController.navigationBar.translucent=NO;
-    UIBarButtonItem*first=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"category_menu"] style:UIBarButtonItemStylePlain  target:self action:@selector(pushLogin)];
+    UIBarButtonItem*first=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"category_menu"] style:UIBarButtonItemStylePlain  target:self action:@selector(newView)];
     UIBarButtonItem*second=[[UIBarButtonItem alloc]initWithTitle:@"数字尾巴" style:UIBarButtonItemStylePlain  target:self action:@selector(pushLogin) ];
     self.navigationItem.leftBarButtonItems=@[first,second];
     UIBarButtonItem*rFirst=[[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(pushLogin)];
     UIBarButtonItem*rSecond=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"inbox"] style:UIBarButtonItemStylePlain target:self action:@selector(pushLogin)];
     self.navigationItem.rightBarButtonItems=@[rFirst,rSecond];
-
-
+    
+    
+    SliderViewController*slider=[[SliderViewController alloc]init];
+//    UIStoryboard *strory=[UIStoryboard storyboardWithName:@"sliderView" bundle:nil];
+//    SliderViewController*slider=[strory instantiateViewControllerWithIdentifier:@"ider"];
+//    
+//    
+//    [self.navigationController pushViewController:slider animated:YES];
+    
+    slider.delegate=self;
+    self.vv=slider.view;
+    self.sliderView=slider;
+    
     //后面来改
+}
+
+//侧边栏
+-(void)newView{
+    
+   //取反操作  可以拿到什么东西来取反
+    
+        //没有就生成
+    
+        //有就移除
+    
+    
+    if (([self.vv superview]==self.navigationController.view)) {
+         [self.vv removeFromSuperview];
+    }else{
+       
+        
+        
+        //时间
+        [self.Ca setDuration:0.5];
+        
+        [self.Ca setType:kCATransitionPush];
+        [self.Ca setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn]];
+        
+        //加动画
+        [[self.navigationController.view layer]addAnimation:self.Ca forKey:kCATransitionPush];
+//        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"sliderView" bundle:nil];
+//        UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"ider"];
+
+        
+//        [self.navigationController pushViewController:vc animated:YES];
+        
+
+        [self.navigationController.view addSubview:self.vv];
+        
+    }
+    
+        
+
+    
+    
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView;{
     return 1;}
@@ -383,6 +439,14 @@ self.tableView.frame = CGRectMake(0, 114.f, self.view.bounds.size.width, self.vi
     
     return cell;
 
+}
+- (void)needPigMeet{
+   
+//    [[self.vv  layer]removeAnimationForKey:kCATransitionPush];
+
+    //移除view
+    [self.vv removeFromSuperview];
+    
 }
 
 

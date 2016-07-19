@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SliderViewController.h"
 
 @interface ViewController : UITableViewController
-//@property(nonatomic,strong)UITableView*tableView;
+@property(nonatomic,strong)SliderViewController*sliderView;
+@property(nonatomic,strong)CATransition*Ca;
+@property(nonatomic,assign)int c;
 
 
 @end

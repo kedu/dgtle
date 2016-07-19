@@ -8,6 +8,7 @@
 
 #import "navViewController.h"
 #import "ViewController.h"
+#import "findNewViewController.h"
 //#import "MenuViewController.h"
 
 @interface navViewController ()
@@ -19,6 +20,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
      self.red=1;
+    //
+//    self.navigationController.navigationBar.backgroundColor=[UIColor whiteColor];
+//    self.navigationController.navigationBar.translucent=NO;
+//    UIBarButtonItem*first=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"category_menu"] style:UIBarButtonItemStylePlain  target:self action:@selector(pushLogin)];
+//    UIBarButtonItem*second=[[UIBarButtonItem alloc]initWithTitle:@"数字尾巴" style:UIBarButtonItemStylePlain  target:self action:@selector(pushLogin) ];
+//    self.navigationItem.leftBarButtonItems=@[first,second];
+//    UIBarButtonItem*rFirst=[[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(pushLogin)];
+//    UIBarButtonItem*rSecond=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"inbox"] style:UIBarButtonItemStylePlain target:self action:@selector(pushLogin)];
+//    self.navigationItem.rightBarButtonItems=@[rFirst,rSecond];
    
     //导航菜单
     UIView*menuView=[[UIView alloc]initWithFrame:CGRectMake(0, 54, self.view.frame.size.width, 60)];
@@ -42,6 +52,7 @@
     findButton.titleLabel.font=[UIFont systemFontOfSize:25];
     [findButton setTitle:@"发现" forState:UIControlStateNormal];
       [findButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [findButton addTarget:self action:@selector(findNew) forControlEvents:UIControlEventTouchUpInside];
     
     [menuView addSubview:findButton];
 
@@ -54,6 +65,15 @@
 }
 -(void)pushLogin{
     NSLog(@"我找到你了");
+}
+-(void)findNew{
+    findNewViewController *findNew=[findNewViewController new];
+    
+    [self pushViewController:findNew animated:YES];
+
+
+
+
 }
 -(void)Home{
 
