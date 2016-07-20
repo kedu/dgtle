@@ -13,7 +13,7 @@
 #import "NewHeaderViewController.h"
 #import "BackViewController.h"
 #import "SliderViewController.h"
-//#import "HeaderViewController.h"
+#import "ODRefreshControl.h"
 #define HomeData(i)  [NSString stringWithFormat:@"http://www.dgtle.com/api/dgtle_api/v1/api.php?charset=UTF8&dataform=json&swh=480x800&apikeys=DGTLECOM_APITEST1&modules=portal&actions=article&limit=%02d_20&order=dateline_desc",i]
 typedef NS_ENUM(NSInteger, CatidType){
         Computer=24,//电脑
@@ -77,18 +77,26 @@ typedef NS_ENUM(NSInteger, CatidType){
 
 }
 -(void)setMenu{
-    CATransition *applicationLoadViewIn =[CATransition animation];
-    self.Ca=applicationLoadViewIn;
+//    CATransition *applicationLoadViewIn =[CATransition animation];
+//    self.Ca=applicationLoadViewIn;
+    //
     
-   
-   
-    
-    
-    
+    ODRefreshControl *refreshControl = [[ODRefreshControl alloc] initInScrollView:self.tableView];
+    [refreshControl addTarget:self action:@selector(dropViewDidBeginRefreshing:) forControlEvents:UIControlEventValueChanged];
 
-
-
-
+}
+- (void)dropViewDidBeginRefreshing:(ODRefreshControl *)refreshControl
+{
+    double delayInSeconds = 3.0;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [refreshControl endRefreshing];
+        //加载数据
+        int a=0;
+        //设置数据
+        [self setNetData:a];
+        
+    });
 }
 -(void)viewWillLayoutSubviews{
     
@@ -392,24 +400,22 @@ self.tableView.frame = CGRectMake(0, 114.f, self.view.bounds.size.width, self.vi
     if (([self.vv superview]==self.navigationController.view)) {
          [self.vv removeFromSuperview];
     }else{
-        /**
-         *  CATransition *transition = [CATransition animation];
-         transition.duration = 2.0f;
-         transition.type = kCATransitionPush;
-         transition.subtype = kCATransitionFromTop;
-         [self.view exchangeSubviewAtIndex:1 withSubviewAtIndex:0];
-         [self.view.layer addAnimation:transition forKey:@"animation"];
-         */
+      
         
-        //时间
-        [self.Ca setDuration:0.5];
+        CATransition *applicationLoadViewIn =[CATransition animation];
+        //
+        [applicationLoadViewIn setDuration:0.5];
+        //
+        [applicationLoadViewIn setType:kCATransitionMoveIn];
+        //
+//        applicationLoadViewIn.subtype=kCATransitionFromLeft;
+        //
+        [applicationLoadViewIn setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn]];
         
-        [self.Ca setType:kCATransitionMoveIn];
-        self.Ca.subtype=kCATransitionFromLeft;
-        
+      
 
         //加动画
-        [[self.navigationController.view  layer]addAnimation:self.Ca forKey:kCATransitionMoveIn];
+        [[self.navigationController.view  layer]addAnimation:applicationLoadViewIn forKey:kCATransitionMoveIn];
        
        [self.navigationController.view addSubview:self.vv];
         
@@ -459,14 +465,27 @@ self.tableView.frame = CGRectMake(0, 114.f, self.view.bounds.size.width, self.vi
 
 }
 - (void)back2Home{
-   
-    //时间
-    [self.Ca setDuration:0.5];
-    
-    [self.Ca setType:kCATransitionMoveIn];
-    self.Ca.subtype=kCATransitionFromLeft;
+    /**
+     *  CATransition *applicationLoadViewIn =[CATransition animation];
+     [applicationLoadViewIn setDuration:duration];
+     [applicationLoadViewIn setType:kCATransitionReveal];
+     [applicationLoadViewIn setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn]];
+     [[myView layer]addAnimation:applicationLoadViewIn forKey:kCATransitionReveal];
+     */
+   //
+    CATransition *applicationLoadViewIn =[CATransition animation];
+    //
+    [applicationLoadViewIn setDuration:0.5];
+    //
+    [applicationLoadViewIn setType:kCATransitionReveal];
+    //
+    applicationLoadViewIn.subtype=kCATransitionFromRight;
+    //
+    [applicationLoadViewIn setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn]];
+
     //加动画
-    [[self.navigationController.view layer]addAnimation:self.Ca forKey:kCATransitionMoveIn];
+    [[self.navigationController.view layer]addAnimation:applicationLoadViewIn forKey:kCATransitionMoveIn];
+
     //移除view
     [self.vv removeFromSuperview];
     

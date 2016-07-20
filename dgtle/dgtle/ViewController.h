@@ -11,7 +11,7 @@
 
 @interface ViewController : UITableViewController
 @property(nonatomic,strong)SliderViewController*sliderView;
-@property(nonatomic,strong)CATransition*Ca;
+//@property(nonatomic,strong)CATransition*Ca;
 @property(nonatomic,assign)int c;
 
 
