@@ -14,7 +14,7 @@
 #warning 1. 指定协议及代理方法
 @protocol SliderViewControllerDelegate <NSObject>
 
-- (void)needPigMeet;
+- (void)back2Home;
 
 
 @end

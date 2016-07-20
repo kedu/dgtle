@@ -20,15 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
      self.red=1;
-    //
-//    self.navigationController.navigationBar.backgroundColor=[UIColor whiteColor];
-//    self.navigationController.navigationBar.translucent=NO;
-//    UIBarButtonItem*first=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"category_menu"] style:UIBarButtonItemStylePlain  target:self action:@selector(pushLogin)];
-//    UIBarButtonItem*second=[[UIBarButtonItem alloc]initWithTitle:@"数字尾巴" style:UIBarButtonItemStylePlain  target:self action:@selector(pushLogin) ];
-//    self.navigationItem.leftBarButtonItems=@[first,second];
-//    UIBarButtonItem*rFirst=[[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(pushLogin)];
-//    UIBarButtonItem*rSecond=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"inbox"] style:UIBarButtonItemStylePlain target:self action:@selector(pushLogin)];
-//    self.navigationItem.rightBarButtonItems=@[rFirst,rSecond];
+    
    
     //导航菜单
     UIView*menuView=[[UIView alloc]initWithFrame:CGRectMake(0, 54, self.view.frame.size.width, 60)];
@@ -64,30 +56,67 @@
     
 }
 -(void)pushLogin{
+  //3个标签栏
+    //home  根  //groupe  findNew 并列  需要判断
     NSLog(@"我找到你了");
 }
 -(void)findNew{
     findNewViewController *findNew=[findNewViewController new];
     
-    [self pushViewController:findNew animated:YES];
-
-
-
+    if (self.viewControllers.count<3) {
+        
+        //判断
+        if ([self.viewControllers[self.viewControllers.count-1] isKindOfClass:[findNewViewController class]]) {
+            return;
+        }
+        else{
+            [self pushViewController:findNew animated:YES];
+            
+        }
+    }else{
+        
+        
+        [self popViewControllerAnimated:YES];
+        
+        
+        
+    }
 
 }
 -(void)Home{
 
     [self popToRootViewControllerAnimated:YES];
-
+    
+    //数组为空
+    //里面有一个跟控制器  怎么会为空呢
 }
-
 -(void)groupeView{
+    //如果当前就在push的页面,不响应
+    //不在  响应
+      GroupeViewController*groupe=[GroupeViewController new];
     
-    GroupeViewController*groupe=[GroupeViewController new];
-    
+    if (self.viewControllers.count<3) {
+        
+        //判断
+        if ([self.viewControllers[self.viewControllers.count-1] isKindOfClass:[GroupeViewController class]]) {
+            return;
+        }
+        else{
+            [self pushViewController:groupe animated:YES];
+            
+        }
+    }else{
+        
+        
+        [self popViewControllerAnimated:YES];
+        
+        
+        
+    }
 
    
-        [self pushViewController:groupe animated:YES];
+
+    
     
 
 }

@@ -13,7 +13,6 @@
 		18C867B81D3DA191005C32F6 /* findNewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C867B61D3DA191005C32F6 /* findNewViewController.xib */; };
 		18C867BC1D3DCEA8005C32F6 /* SliderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C867BA1D3DCEA8005C32F6 /* SliderViewController.m */; };
 		18C867BD1D3DCEA8005C32F6 /* SliderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C867BB1D3DCEA8005C32F6 /* SliderViewController.xib */; };
-		18C867BF1D3E1DF9005C32F6 /* sliderView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18C867BE1D3E1DF9005C32F6 /* sliderView.storyboard */; };
 		18FADF141D35F7FD0041A738 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FADF131D35F7FD0041A738 /* main.m */; };
 		18FADF171D35F7FD0041A738 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FADF161D35F7FD0041A738 /* AppDelegate.m */; };
 		18FADF1A1D35F7FD0041A738 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FADF191D35F7FD0041A738 /* ViewController.m */; };
@@ -101,7 +100,6 @@
 		18C867B91D3DCEA8005C32F6 /* SliderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SliderViewController.h; sourceTree = "<group>"; };
 		18C867BA1D3DCEA8005C32F6 /* SliderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SliderViewController.m; sourceTree = "<group>"; };
 		18C867BB1D3DCEA8005C32F6 /* SliderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SliderViewController.xib; sourceTree = "<group>"; };
-		18C867BE1D3E1DF9005C32F6 /* sliderView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = sliderView.storyboard; sourceTree = "<group>"; };
 		18FADF0F1D35F7FD0041A738 /* dgtle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dgtle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18FADF131D35F7FD0041A738 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		18FADF151D35F7FD0041A738 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -330,7 +328,6 @@
 				18C867B91D3DCEA8005C32F6 /* SliderViewController.h */,
 				18C867BA1D3DCEA8005C32F6 /* SliderViewController.m */,
 				18C867BB1D3DCEA8005C32F6 /* SliderViewController.xib */,
-				18C867BE1D3E1DF9005C32F6 /* sliderView.storyboard */,
 				18C867B41D3DA191005C32F6 /* findNewViewController.h */,
 				18C867B51D3DA191005C32F6 /* findNewViewController.m */,
 				18C867B61D3DA191005C32F6 /* findNewViewController.xib */,
@@ -631,7 +628,6 @@
 				18FADF221D35F7FD0041A738 /* Assets.xcassets in Resources */,
 				18FADF1D1D35F7FD0041A738 /* Main.storyboard in Resources */,
 				18FAEAD71D3B0CE50041A738 /* BackViewController.xib in Resources */,
-				18C867BF1D3E1DF9005C32F6 /* sliderView.storyboard in Resources */,
 				18C867BD1D3DCEA8005C32F6 /* SliderViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -39,6 +39,7 @@
     [self.view addSubview:newView];
 //     [self.view addSubview:button];
     // Do any additional setup after loading the view from its nib.
+
 }
 
 
@@ -51,8 +52,8 @@
     if (locP.x>300) {
         
         
-        if ([self.delegate respondsToSelector:@selector(needPigMeet)]) {
-            [self.delegate needPigMeet];
+        if ([self.delegate respondsToSelector:@selector(back2Home)]) {
+            [self.delegate back2Home];
         }
     }
 }

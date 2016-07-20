@@ -73,13 +73,18 @@ typedef NS_ENUM(NSInteger, CatidType){
     [self setNetData:a];
     //scroll代理
     //tableView代理了就好
+    
 
 }
 -(void)setMenu{
     CATransition *applicationLoadViewIn =[CATransition animation];
     self.Ca=applicationLoadViewIn;
     
-    self.Ca.removedOnCompletion=NO;
+   
+   
+    
+    
+    
 
 
 
@@ -360,10 +365,18 @@ self.tableView.frame = CGRectMake(0, 114.f, self.view.bounds.size.width, self.vi
 //    [self.navigationController pushViewController:slider animated:YES];
     
     slider.delegate=self;
+    
     self.vv=slider.view;
+    
     self.sliderView=slider;
     
     //后面来改
+}
+-(void)viewWillAppear:(BOOL)animated{
+
+
+
+   
 }
 
 //侧边栏
@@ -381,7 +394,6 @@ self.tableView.frame = CGRectMake(0, 114.f, self.view.bounds.size.width, self.vi
     }else{
        
         
-        
         //时间
         [self.Ca setDuration:0.5];
         
@@ -390,14 +402,12 @@ self.tableView.frame = CGRectMake(0, 114.f, self.view.bounds.size.width, self.vi
         
         //加动画
         [[self.navigationController.view layer]addAnimation:self.Ca forKey:kCATransitionPush];
-//        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"sliderView" bundle:nil];
-//        UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"ider"];
-
         
-//        [self.navigationController pushViewController:vc animated:YES];
+       [self.navigationController.view addSubview:self.vv];
         
 
-        [self.navigationController.view addSubview:self.vv];
+       
+       
         
     }
     
@@ -440,9 +450,9 @@ self.tableView.frame = CGRectMake(0, 114.f, self.view.bounds.size.width, self.vi
     return cell;
 
 }
-- (void)needPigMeet{
+- (void)back2Home{
    
-//    [[self.vv  layer]removeAnimationForKey:kCATransitionPush];
+
 
     //移除view
     [self.vv removeFromSuperview];
