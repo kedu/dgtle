@@ -39,7 +39,7 @@ typedef NS_ENUM(NSInteger, CatidType){
     [super viewDidLoad];
 
 //    self.tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 50.f, self.view.frame.size.width, self.view.frame.size.height)];
-
+//    self.tableView.backgroundColor=[UIColor colorWithRed:0.97 green:0.97 blue:0.97 alpha:0.8];
     //重新搭建架构
     //加载视图
     //判断网络
@@ -459,11 +459,15 @@ self.tableView.frame = CGRectMake(0, 114.f, self.view.bounds.size.width, self.vi
     
         cell.viewModel=viewModel;
     });
-
-    
+//    cell.transform=CGAffineTransformScale(cell.transform, 0.95, 0.95);
+    cell.transform=CGAffineTransformMakeScale(0.95, 0.95);
+    //修改不了x,y,可以修改宽高
+    cell.contentMode=UIViewContentModeCenter;
     return cell;
 
 }
+
+
 - (void)back2Home{
     /**
      *  CATransition *applicationLoadViewIn =[CATransition animation];

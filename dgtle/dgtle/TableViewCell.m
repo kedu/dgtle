@@ -147,6 +147,27 @@
     }
     return _iconImage;
 }
+- (void)setFrame:(CGRect)frame
+{
+    //修改cell的左右边距为10;
+    //修改cell的Y值下移10;
+    //修改cell的高度减少10;
+    static CGFloat margin = 10;
+    
+    CGRect tmp=frame;
+    
+    tmp.origin.x = margin;
+    
+//    tmp.size.width -= 2 * tmp.origin.x;//不起作用  //感觉x,y起作用  宽高不起作用
+    
+    tmp.origin.y += margin;
+    
+//    tmp.size.height -= margin;
+    
+    frame=tmp;
+    
+    [super setFrame:frame];
+}
 
 - (UILabel *)nameLabel
 {
@@ -326,6 +347,7 @@
     [super prepareForReuse];
     self.viewModel=nil;
     _tag_name.imageView.image=nil;
+
 
 }
 - (void)awakeFromNib {
