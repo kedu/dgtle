@@ -392,17 +392,25 @@ self.tableView.frame = CGRectMake(0, 114.f, self.view.bounds.size.width, self.vi
     if (([self.vv superview]==self.navigationController.view)) {
          [self.vv removeFromSuperview];
     }else{
-       
+        /**
+         *  CATransition *transition = [CATransition animation];
+         transition.duration = 2.0f;
+         transition.type = kCATransitionPush;
+         transition.subtype = kCATransitionFromTop;
+         [self.view exchangeSubviewAtIndex:1 withSubviewAtIndex:0];
+         [self.view.layer addAnimation:transition forKey:@"animation"];
+         */
         
         //时间
         [self.Ca setDuration:0.5];
         
-        [self.Ca setType:kCATransitionPush];
-        [self.Ca setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn]];
+        [self.Ca setType:kCATransitionMoveIn];
+        self.Ca.subtype=kCATransitionFromLeft;
         
+
         //加动画
-        [[self.navigationController.view layer]addAnimation:self.Ca forKey:kCATransitionPush];
-        
+        [[self.navigationController.view  layer]addAnimation:self.Ca forKey:kCATransitionMoveIn];
+       
        [self.navigationController.view addSubview:self.vv];
         
 
@@ -452,8 +460,13 @@ self.tableView.frame = CGRectMake(0, 114.f, self.view.bounds.size.width, self.vi
 }
 - (void)back2Home{
    
-
-
+    //时间
+    [self.Ca setDuration:0.5];
+    
+    [self.Ca setType:kCATransitionMoveIn];
+    self.Ca.subtype=kCATransitionFromLeft;
+    //加动画
+    [[self.navigationController.view layer]addAnimation:self.Ca forKey:kCATransitionMoveIn];
     //移除view
     [self.vv removeFromSuperview];
     
