@@ -18,7 +18,7 @@
 @property(nonatomic,strong)NSNumber*dateline;//提交时间
 @property(nonatomic,strong)NSNumber*timestamp;//最后一次
 @property(nonatomic,copy)NSNumber*recommend_add;//点赞
-
+@property(nonatomic,copy)NSString*aid;//文件名
 @property(nonatomic,strong)NSNumber*commentnum;//评论
 @property (nonatomic, copy)NSString * ID;//其他属性
 @property(nonatomic,copy)NSString*tag_name;

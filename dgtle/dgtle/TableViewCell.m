@@ -350,6 +350,17 @@
 
 
 }
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    //
+    if ([self.delegate respondsToSelector:@selector(cellTouch:)]) {
+        [self.delegate  cellTouch:[touches anyObject]];
+    }
+    
+
+
+
+
+}
 - (void)awakeFromNib {
     // Initialization code
 }

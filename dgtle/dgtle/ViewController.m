@@ -20,11 +20,12 @@ typedef NS_ENUM(NSInteger, CatidType){
         Phone=13,//手机
     //数据太多,后面来集成
 };
-@interface ViewController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate,SliderViewControllerDelegate>
+@interface ViewController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate,SliderViewControllerDelegate,TableViewCellDelegate>
 @property(nonatomic,strong)NewHeaderViewController*header;
 @property(nonatomic,strong)UIPageControl*pageControl;
 @property(nonatomic,strong)NSMutableArray *array;//存放model
 @property(nonatomic,assign)CGFloat f1;
+@property(nonatomic,strong)UIWebView*webView;
 
 @property(nonatomic,strong)UIView*vv;
 @property(nonatomic,assign)CGFloat f3;//网络通断参数
@@ -46,8 +47,6 @@ typedef NS_ENUM(NSInteger, CatidType){
     //加载数据
     self.f1=1;
     self.c=1;
-  
-    
 
      self.array=[NSMutableArray array];
     
@@ -73,18 +72,17 @@ typedef NS_ENUM(NSInteger, CatidType){
     [self setNetData:a];
     //scroll代理
     //tableView代理了就好
-    
+   //cell代理
+   
 
 }
 -(void)setMenu{
-//    CATransition *applicationLoadViewIn =[CATransition animation];
-//    self.Ca=applicationLoadViewIn;
-    //
-    
+    //下拉控制刷新
     ODRefreshControl *refreshControl = [[ODRefreshControl alloc] initInScrollView:self.tableView];
     [refreshControl addTarget:self action:@selector(dropViewDidBeginRefreshing:) forControlEvents:UIControlEventValueChanged];
 
 }
+//下来刷新方法
 - (void)dropViewDidBeginRefreshing:(ODRefreshControl *)refreshControl
 {
     double delayInSeconds = 3.0;
@@ -102,6 +100,8 @@ typedef NS_ENUM(NSInteger, CatidType){
     
 self.tableView.frame = CGRectMake(0, 114.f, self.view.bounds.size.width, self.view.bounds.size.height);
 //    self.automaticallyAdjustsScrollViewInsets=NO;
+//    self.tableView.tableHeaderView.autoresizingMask=0;
+  
     //解决导航栏线
     if ([self.navigationController.navigationBar respondsToSelector:@selector( setBackgroundImage:forBarMetrics:)]){
         NSArray *list=self.navigationController.navigationBar.subviews;
@@ -129,12 +129,14 @@ self.tableView.frame = CGRectMake(0, 114.f, self.view.bounds.size.width, self.vi
 -(void)setHeaderView{
     //设置headerView
     NewHeaderViewController*header=[[NewHeaderViewController alloc]init];
+    header.view.frame=CGRectMake(0, 0, self.view.frame.size.width, 100);
+    header.view.autoresizingMask=UIViewAutoresizingFlexibleWidth;
     //赋值给header文件  代码创建的view传给头view
     self.tableView.tableHeaderView=header.view;
-    CGRect frame= self.tableView.tableHeaderView.frame;
-    frame.size.height-=20;
-    self.tableView.tableHeaderView.frame=frame;
-    NSLog(@"%@",NSStringFromCGRect(self.tableView.tableHeaderView.frame));
+//    CGRect frame= self.tableView.tableHeaderView.frame;
+//    frame.size.height-=20;
+//    self.tableView.tableHeaderView.frame=frame;
+//    NSLog(@"%@",NSStringFromCGRect(self.tableView.tableHeaderView.frame));
     
     self.header=header;
     self.pageControl=header.pageControl;
@@ -283,6 +285,8 @@ self.tableView.frame = CGRectMake(0, 114.f, self.view.bounds.size.width, self.vi
                 viewModel.uid=tmp[@"uid"];
                 //tag_name
                 viewModel.tag_name=tmp[@"tag_name"];
+               // 文件名
+               viewModel.aid=tmp[@"aid"];
                //数组接受模型
                [array1 addObject:viewModel];
         }
@@ -308,12 +312,23 @@ self.tableView.frame = CGRectMake(0, 114.f, self.view.bounds.size.width, self.vi
         //加载...
         //自加
         self.f1++;
-//        NSLog(@"%f--%f",scrollView.contentSize.height,scrollView.bounds.size.height);
-//        NSLog(@"%f",self.f1);
         //加载cell数
         int cellCount=(int)self.f1*20;
+        self.tableView.tableFooterView.hidden=NO;
+
+        UIView *footView=[[UIView alloc]initWithFrame:CGRectMake(0, self.tableView.rowHeight*20*self.f1, 375, 20)];
+        footView.backgroundColor=[UIColor redColor];
+            UILabel*label=[[UILabel alloc]init];
+            label.frame=CGRectMake(0, 0, 375, 20);
+            label.text=@"加载数据中";
+            label.textAlignment=NSTextAlignmentCenter;
+            [footView addSubview:label];
+            self.tableView.tableFooterView=footView;
+        [self.tableView setNeedsDisplay];
+
         //加载数据
         [self setNetData:cellCount];
+        self.tableView.tableFooterView.hidden=YES;
     }
         
     }
@@ -459,13 +474,61 @@ self.tableView.frame = CGRectMake(0, 114.f, self.view.bounds.size.width, self.vi
     
         cell.viewModel=viewModel;
     });
-//    cell.transform=CGAffineTransformScale(cell.transform, 0.95, 0.95);
-    cell.transform=CGAffineTransformMakeScale(0.95, 0.95);
-    //修改不了x,y,可以修改宽高
-    cell.contentMode=UIViewContentModeCenter;
+    
+    cell.transform=CGAffineTransformMakeScale(0.95, 0.95);//修改不了x,y,可以修改宽高
+    cell.delegate=self;
+    
     return cell;
 
 }
+-(void)backHome{
+    self.webView.userInteractionEnabled=YES;
+    
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+ 
+
+}
+-(void)cellTouch:(UITouch*)touch{
+    NSLog(@"cell被点击了");
+    UIWebView *webView = [[UIWebView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    //获取当前点
+    CGPoint locP = [touch locationInView:self.tableView];
+    int x=locP.y/self.tableView.rowHeight;
+//    NSLog(@"%d",x);
+    ViewModel*vm=[self.array objectAtIndex:x];
+    NSString*fileName=[NSString stringWithFormat:@"http://www.dgtle.com/article-%d-1.html",[vm.aid intValue]];
+//    NSLog(@"%@",fileName);
+    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:fileName]]];
+    //http://bbs.dgtle.com/zt-group-topic-31-1.html
+    //http://www.dgtle.com/article-15183-1.html
+    //http://www.dgtle.com/article-15182-1.html
+    //http://www.dgtle.com/article-15181-1.html
+  
+    UIViewController *viewCro = [[UIViewController alloc] init];
+    UIButton*back=[UIButton buttonWithType:UIButtonTypeCustom];
+    [back setTitle:@"返回" forState:UIControlStateNormal];
+    [back addTarget:self action:@selector(backHome) forControlEvents:UIControlEventTouchUpInside];
+    back.frame=CGRectMake(0, 50, 50, 50);
+    back.backgroundColor=[UIColor redColor];
+    [viewCro.view addSubview:webView];
+    [viewCro.view addSubview:back];
+    self.webView=webView;
+    webView.scalesPageToFit=YES;
+    NSLog(@"网页加载启动");
+    [self presentViewController:viewCro animated:YES completion:^{
+    
+    }];
+    
+    
+
+
+
+
+
+}
+
 
 
 - (void)back2Home{

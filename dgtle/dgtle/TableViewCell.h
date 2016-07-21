@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "ViewModel.h"
+#warning 1. 指定协议及代理方法
+@protocol TableViewCellDelegate <NSObject>
+//代理方法
+- (void)cellTouch:(UITouch*)touch;
+
+@end
 
 @interface TableViewCell : UITableViewCell
 @property (nonatomic, strong)UIImageView * iconImage;// 用户头像
@@ -22,4 +28,5 @@
 @property (nonatomic, strong)ViewModel * viewModel;//模型
 @property(nonatomic,strong)UIButton*tag_name;
 //-(instancetype)deq;
+@property (nonatomic, weak) id<TableViewCellDelegate> delegate;
 @end

@@ -26,13 +26,15 @@
     //创建数组
     self.muArray=[NSMutableArray array];
    //设置frame
-    self.view.frame=CGRectMake(0, 0, self.view.frame.size.width, 100);
+//    self.view.frame=CGRectMake(0, 0, self.view.frame.size.width, 100);
     //创建pageCtrol
     self.pageControl=[[UIPageControl alloc]initWithFrame:CGRectMake(kWidth/2, 35, 40, 5)];
 //    设置ui
     [self setupUI];
+
     [self.view addSubview:self.scrollView];
     [self.view addSubview:self.pageControl];
+  
 
 }
 
@@ -298,7 +300,7 @@
             [imageView  sd_setImageWithURL:[NSURL URLWithString:dic[@"pic_url"]]];
           
             NSLog(@"%@",NSStringFromCGRect(imageView.frame));
-            imageView.contentMode=UIViewContentModeScaleAspectFill;
+//            imageView.contentMode=UIViewContentModeScaleAspectFill;
             [_scrollView addSubview:imageView];
             
             
