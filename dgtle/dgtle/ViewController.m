@@ -516,7 +516,7 @@ self.tableView.frame = CGRectMake(0, 114.f, self.view.bounds.size.width, self.vi
     [viewCro.view addSubview:back];
     self.webView=webView;
     webView.scalesPageToFit=YES;
-    NSLog(@"网页加载启动");
+//    NSLog(@"网页加载启动");
     [self presentViewController:viewCro animated:YES completion:^{
     
     }];

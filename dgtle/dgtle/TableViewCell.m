@@ -27,8 +27,17 @@
         [self addSubview:self.rise];
         [self addSubview:self.commont];
         [self addSubview:self.tag_name];
+        //1.创建手势识别对象
+        UILongPressGestureRecognizer * longPress = [[UILongPressGestureRecognizer alloc] init];
+        //2.设置对象属性
+        //
 
-        
+        //2.3设置代理
+        longPress.delegate = self;
+        //3.添加监听事件
+        [longPress addTarget:self action:@selector(touchesBegan:withEvent:)];
+        //4.把手势对象添加到要作用的view上
+        [self addGestureRecognizer:longPress];
     }
     return self;
 }
@@ -350,11 +359,13 @@
 
 
 }
+//点击触发
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     //
     if ([self.delegate respondsToSelector:@selector(cellTouch:)]) {
         [self.delegate  cellTouch:[touches anyObject]];
     }
+    
     
 
 
