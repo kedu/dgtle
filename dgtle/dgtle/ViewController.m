@@ -20,13 +20,13 @@ typedef NS_ENUM(NSInteger, CatidType){
         Phone=13,//手机
     //数据太多,后面来集成
 };
-@interface ViewController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate,SliderViewControllerDelegate,TableViewCellDelegate>
-@property(nonatomic,strong)NewHeaderViewController*header;
+@interface ViewController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate,SliderViewControllerDelegate,TableViewCellDelegate,NewHeaderViewControllerDelegte>
+
 @property(nonatomic,strong)UIPageControl*pageControl;
 @property(nonatomic,strong)NSMutableArray *array;//存放model
 @property(nonatomic,assign)CGFloat f1;
 @property(nonatomic,strong)UIWebView*webView;
-
+@property(nonatomic,strong)NewHeaderViewController*header;
 @property(nonatomic,strong)UIView*vv;
 @property(nonatomic,assign)CGFloat f3;//网络通断参数
 @property(nonatomic,assign)CGRect fra;
@@ -73,7 +73,10 @@ typedef NS_ENUM(NSInteger, CatidType){
     //scroll代理
     //tableView代理了就好
    //cell代理
-   
+   //header代理
+    
+    
+    
 
 }
 -(void)setMenu{
@@ -126,20 +129,62 @@ self.tableView.frame = CGRectMake(0, 114.f, self.view.bounds.size.width, self.vi
     [thread start];
 }
 
+
 -(void)setHeaderView{
+    
     //设置headerView
     NewHeaderViewController*header=[[NewHeaderViewController alloc]init];
+    header.delegte=self;
     header.view.frame=CGRectMake(0, 0, self.view.frame.size.width, 100);
     header.view.autoresizingMask=UIViewAutoresizingFlexibleWidth;
+    self.scro=header.scrollView;
     //赋值给header文件  代码创建的view传给头view
     self.tableView.tableHeaderView=header.view;
-//    CGRect frame= self.tableView.tableHeaderView.frame;
-//    frame.size.height-=20;
-//    self.tableView.tableHeaderView.frame=frame;
-//    NSLog(@"%@",NSStringFromCGRect(self.tableView.tableHeaderView.frame));
-    
+    self.tableView.tableHeaderView.userInteractionEnabled=YES;
     self.header=header;
     self.pageControl=header.pageControl;
+//    self.headerData=header.muArray;
+//    if (header.aa.count) {
+//        
+//
+//    }
+  
+
+}
+-(void)setData:(NSArray *)array{
+
+    self.headerData=array;
+
+}
+-(void)touchHeader:(float)d{
+//    CGPoint  loc=[touch locationInView:self.scro];
+//    int s=loc.x/375;
+    int s=(int)d;
+    //没有数据
+ 
+    NSDictionary *t=[self.headerData objectAtIndex:s];
+    NSString*f=t[@"id"];
+    NSLog(@"%@",f);
+    //http://www.dgtle.com/article-15180-1.html
+    NSString*headerName=[NSString stringWithFormat:@"http://www.dgtle.com/article-%d-1.html",[f intValue]];
+    NSLog(@"%@",headerName);
+    UIWebView *webView = [[UIWebView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    
+    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:headerName]]];
+    
+    UIViewController *viewCro = [[UIViewController alloc] init];
+    UIButton*back=[UIButton buttonWithType:UIButtonTypeCustom];
+    [back setTitle:@"返回" forState:UIControlStateNormal];
+    [back addTarget:self action:@selector(backHome) forControlEvents:UIControlEventTouchUpInside];
+    back.frame=CGRectMake(0, 50, 50, 50);
+    back.backgroundColor=[UIColor redColor];
+    [viewCro.view addSubview:webView];
+    [viewCro.view addSubview:back];
+    self.webView=webView;
+    webView.scalesPageToFit=YES;
+    //    NSLog(@"网页加载启动");
+    [self presentViewController:viewCro animated:YES completion:^{
+    }];
 }
 //判断网络是否通畅 self.f3参数  为1通 -1 不通
 -(void)play{
@@ -520,17 +565,7 @@ self.tableView.frame = CGRectMake(0, 114.f, self.view.bounds.size.width, self.vi
     [self presentViewController:viewCro animated:YES completion:^{
     
     }];
-    
-    
-
-
-
-
-
 }
-
-
-
 - (void)back2Home{
     /**
      *  CATransition *applicationLoadViewIn =[CATransition animation];
@@ -563,6 +598,22 @@ self.tableView.frame = CGRectMake(0, 114.f, self.view.bounds.size.width, self.vi
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+    //当收到内存警告时,移除当前没有在屏幕上显示的视图.
+    
+    //判断是否可以安全的移除视图控制器的view.
+    
+    //判断当前的视图控制器的view是否是屏幕上显示.self.view.window
+    
+    //判断当前视图控制器的view是否已经成功加载.isViewLoaded
+    if( self.view.window == nil && [self isViewLoaded]) {
+        //安全移除控制器的view;
+        self.view = nil;//[_view release];_view = nil;
+    }
+    //NSLog(@"%@",self.view.window);
+    
+    
+    
+    
 }
 
 @end

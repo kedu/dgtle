@@ -31,7 +31,6 @@
         UILongPressGestureRecognizer * longPress = [[UILongPressGestureRecognizer alloc] init];
         //2.设置对象属性
         //
-
         //2.3设置代理
         longPress.delegate = self;
         //3.添加监听事件

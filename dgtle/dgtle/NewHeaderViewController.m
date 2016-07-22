@@ -23,6 +23,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    //
+
     //创建数组
     self.muArray=[NSMutableArray array];
    //设置frame
@@ -34,7 +36,39 @@
 
     [self.view addSubview:self.scrollView];
     [self.view addSubview:self.pageControl];
-  
+
+    self.view.userInteractionEnabled=YES;
+    self.scrollView.userInteractionEnabled=YES;
+
+    
+    //看这边button有没有响应
+    NSLog(@"%d",[self respondsToSelector:@selector(touchesBegan:withEvent:)]);//可以响应
+    //看是否能被点击
+    // 不能被点击
+    
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        while (1) {
+            if (self.muArray.count) {
+                if ([self.delegte respondsToSelector:@selector(setData:)]) {
+                    [self.delegte setData:self.muArray];
+                    break;
+                }
+                
+            }
+
+        }
+        
+        
+    });
+    }
+
+-(void)clickCategory{
+    NSLog(@"我被点击了");
+    float c= self.pageControl.currentPage;
+    if ([self.delegte respondsToSelector:@selector(touchHeader:)]) {
+        [self.delegte touchHeader:c];
+    }
+
 
 }
 
@@ -50,14 +84,14 @@
     [self.view addSubview:self.label];
     lab.backgroundColor=[UIColor redColor];
 
-   
     self.scrollView.delegate=self;
     [self setImage];
     [self setupPageControll];
-    [self setLab];
+
     // 创建计时器
 
     [self initImageTimer];
+    [self.scrollView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickCategory)]];
     
 }
 // Decelerating 减速
@@ -66,20 +100,7 @@
     
     _pageControl.currentPage = scrollView.contentOffset.x / kWidth;
 }
--(void)setLab{
-  
-    
-    
 
-
-
-
-
-
-
-
-
-}
 - (void)setupPageControll {
     
     // 设置总共有几个点
@@ -251,7 +272,9 @@
             CGFloat imageViewX = i * kWidth;
             UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(imageViewX, 0, kWidth, self.view.frame.size.height-20)];
             NSDictionary*dic=tmpArry[i];
+            //
             self.muArray=tmpArry;
+            
             
             
             
@@ -262,16 +285,8 @@
             
             
         }
-       
+    
         
-      
-    
-    
-    
-    
-    
-    
-    
     };
     netWork.successfulBlock=^(id object){
     
@@ -301,16 +316,23 @@
           
             NSLog(@"%@",NSStringFromCGRect(imageView.frame));
 //            imageView.contentMode=UIViewContentModeScaleAspectFill;
+            imageView.userInteractionEnabled=YES;
+            /**
+             *  [bbc setUserInteractionEnabled:YES];
+             [voaspecial setUserInteractionEnabled:YES];
+             [bbc addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickCategory:)]];
+             [voaspecial addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickCategory:)]];
+             */
+//            [imageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tt)]];
+            
+
             [_scrollView addSubview:imageView];
             
             
         }
-        [self.view addSubview:self.scrollView];
-        [self.view addSubview:self.pageControl];
+//        [self.view addSubview:self.scrollView];
+//        [self.view addSubview:self.pageControl];
         self.muArray=dic_array;
-
-        
-        
 
     };
        // 设置 scrollView的contentSize
@@ -323,10 +345,4 @@
     _scrollView.pagingEnabled = YES;
     
 }
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-
 @end
