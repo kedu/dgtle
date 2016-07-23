@@ -38,6 +38,7 @@ typedef NS_ENUM(NSInteger, CatidType){
     
    
     [super viewDidLoad];
+    //html不是很好适用app,需要html+css+js 这是一个大工程 克服
 
 //    self.tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 50.f, self.view.frame.size.width, self.view.frame.size.height)];
 //    self.tableView.backgroundColor=[UIColor colorWithRed:0.97 green:0.97 blue:0.97 alpha:0.8];
@@ -257,15 +258,15 @@ self.tableView.frame = CGRectMake(0, 114.f, self.view.bounds.size.width, self.vi
             dd=(NSDictionary*)obj;
             [dic_array addObject:dd];
         }];
-        NSDictionary *num=[NSDictionary dictionary];
+//        NSDictionary *num=[NSDictionary dictionary];
         for (int i=0; i<dic_array.count; i++) {//降序
             for (int j=i; j<dic_array.count-1; j++) {
                 
                 if ([dic_array[i][@"dateline"] intValue]<[dic_array[j+1][@"dateline"] intValue]) {
 
-                    num=dic_array[i];
+                     NSDictionary *num=dic_array[i];
                     dic_array[i]=dic_array[j+1];
-                    dic_array[j+1]=num;
+                    dic_array[j+1]= num;
 
             }
                 
@@ -440,12 +441,7 @@ self.tableView.frame = CGRectMake(0, 114.f, self.view.bounds.size.width, self.vi
     
     //后面来改
 }
--(void)viewWillAppear:(BOOL)animated{
 
-
-
-   
-}
 
 //侧边栏
 -(void)newView{
@@ -530,6 +526,7 @@ self.tableView.frame = CGRectMake(0, 114.f, self.view.bounds.size.width, self.vi
     self.webView.userInteractionEnabled=YES;
     
     [self dismissViewControllerAnimated:YES completion:^{
+        [self.webView removeFromSuperview];
         
     }];
  
