@@ -14,6 +14,7 @@
 #import "BackViewController.h"
 #import "SliderViewController.h"
 #import "ODRefreshControl.h"
+#import <WebKit/WebKit.h>
 #define HomeData(i)  [NSString stringWithFormat:@"http://www.dgtle.com/api/dgtle_api/v1/api.php?charset=UTF8&dataform=json&swh=480x800&apikeys=DGTLECOM_APITEST1&modules=portal&actions=article&limit=%02d_20&order=dateline_desc",i]
 typedef NS_ENUM(NSInteger, CatidType){
         Computer=24,//电脑
@@ -25,7 +26,7 @@ typedef NS_ENUM(NSInteger, CatidType){
 @property(nonatomic,strong)UIPageControl*pageControl;
 @property(nonatomic,strong)NSMutableArray *array;//存放model
 @property(nonatomic,assign)CGFloat f1;
-@property(nonatomic,strong)UIWebView*webView;
+@property(nonatomic,strong)WKWebView*webView;
 @property(nonatomic,strong)NewHeaderViewController*header;
 @property(nonatomic,strong)UIView*vv;
 @property(nonatomic,assign)CGFloat f3;//网络通断参数
@@ -38,7 +39,7 @@ typedef NS_ENUM(NSInteger, CatidType){
     
    
     [super viewDidLoad];
-    //html不是很好适用app,需要html+css+js 这是一个大工程 克服
+    //html不是很好适用app,需要html+css+js 这是一个大工程 克服  试试wkWebView
 
 //    self.tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 50.f, self.view.frame.size.width, self.view.frame.size.height)];
 //    self.tableView.backgroundColor=[UIColor colorWithRed:0.97 green:0.97 blue:0.97 alpha:0.8];
@@ -169,7 +170,7 @@ self.tableView.frame = CGRectMake(0, 114.f, self.view.bounds.size.width, self.vi
     //http://www.dgtle.com/article-15180-1.html
     NSString*headerName=[NSString stringWithFormat:@"http://www.dgtle.com/article-%d-1.html",[f intValue]];
     NSLog(@"%@",headerName);
-    UIWebView *webView = [[UIWebView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    WKWebView *webView = [[WKWebView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     
     [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:headerName]]];
     
@@ -182,7 +183,6 @@ self.tableView.frame = CGRectMake(0, 114.f, self.view.bounds.size.width, self.vi
     [viewCro.view addSubview:webView];
     [viewCro.view addSubview:back];
     self.webView=webView;
-    webView.scalesPageToFit=YES;
     //    NSLog(@"网页加载启动");
     [self presentViewController:viewCro animated:YES completion:^{
     }];
@@ -527,6 +527,8 @@ self.tableView.frame = CGRectMake(0, 114.f, self.view.bounds.size.width, self.vi
     
     [self dismissViewControllerAnimated:YES completion:^{
         [self.webView removeFromSuperview];
+        self.webView=nil;
+        
         
     }];
  
@@ -534,7 +536,8 @@ self.tableView.frame = CGRectMake(0, 114.f, self.view.bounds.size.width, self.vi
 }
 -(void)cellTouch:(UITouch*)touch{
     NSLog(@"cell被点击了");
-    UIWebView *webView = [[UIWebView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    
+    WKWebView *webView = [[WKWebView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     //获取当前点
     CGPoint locP = [touch locationInView:self.tableView];
     int x=locP.y/self.tableView.rowHeight;
@@ -543,7 +546,6 @@ self.tableView.frame = CGRectMake(0, 114.f, self.view.bounds.size.width, self.vi
     NSString*fileName=[NSString stringWithFormat:@"http://www.dgtle.com/article-%d-1.html",[vm.aid intValue]];
 //    NSLog(@"%@",fileName);
     [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:fileName]]];
-    //http://bbs.dgtle.com/zt-group-topic-31-1.html
     //http://www.dgtle.com/article-15183-1.html
     //http://www.dgtle.com/article-15182-1.html
     //http://www.dgtle.com/article-15181-1.html
@@ -557,7 +559,7 @@ self.tableView.frame = CGRectMake(0, 114.f, self.view.bounds.size.width, self.vi
     [viewCro.view addSubview:webView];
     [viewCro.view addSubview:back];
     self.webView=webView;
-    webView.scalesPageToFit=YES;
+   
 //    NSLog(@"网页加载启动");
     [self presentViewController:viewCro animated:YES completion:^{
     
